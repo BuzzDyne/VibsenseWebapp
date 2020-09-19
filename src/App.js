@@ -1,23 +1,30 @@
 import React from 'react';
+import {BrowserRouter as Router} from "react-router-dom"
+
 import './App.css';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+
+import Menu from './components/Menu'
+import Header from './components/Header';
+// import Company from './Company';
+// import LayerSelection from './LayerSelection';
 
 function App() {
+
+  // const [companyID, setCompanyID] = useState()
+
+  // const [user, setuser] = useState();
+  // const [gList, setgList] = useState();
+
   return (
     <Router>
       <div className="app">
+        <Header/>
 
-        <Switch>
-          <Route path="/Company/:cID">
-            <h1>Company</h1>
-          </Route>
-
-
-        </Switch>
+        <Menu companyID="rDAeKWkR5cvn9SClJr9l"/>
 
       </div>
     </Router>
   );
 }
 
-export default App;
+export default App
