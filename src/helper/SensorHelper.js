@@ -1,5 +1,3 @@
-import { database } from "../firebase";
-
 export function beautifyDate(dateSecs) {
   
   dateSecs = dateSecs * 1000;

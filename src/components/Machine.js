@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useParams} from 'react-router-dom'
 
-import firebase from '../firebase'
+import {db} from '../firebase'
 import {getCustomLinks} from '../helper/LevelSelectionHelper'
 
 function Machine() {
@@ -15,9 +15,7 @@ function Machine() {
   const [sensors, setSensors] = useState([])
 
   useEffect(() => {
-    firebase
-      .firestore()
-      .doc(links.docSource)
+    db.doc(links.docSource)
       .get()
       .then((snapshot) => {
         

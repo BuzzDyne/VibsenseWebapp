@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link, useParams} from 'react-router-dom'
 // import LayerSelectionItem from './LayerSelectionItem';
 
-import firebase from '../firebase'
+import {db} from '../firebase'
 import {getCustomLinks} from '../helper/LevelSelectionHelper'
 
 // ??? What does props and match do?
@@ -44,9 +44,8 @@ function LayerSelection(props, match) {
 
   
   useEffect(() => {
-    firebase
-      .firestore()
-      .doc(links.docSource)
+    
+    db.doc(links.docSource)
       .get()
       .then((snapshot) => {
         

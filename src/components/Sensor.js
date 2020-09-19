@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 
-import firebase from '../firebase'
+import {db} from '../firebase'
 import {beautifyDate} from '../helper/SensorHelper'
 
 function Sensor() {
@@ -15,9 +15,7 @@ function Sensor() {
   const [dataRows, setDataRows] = useState([])
 
   useEffect(() => {
-    firebase
-      .firestore()
-      .doc(docAddr)
+    db.doc(docAddr)
       .get()
       .then((snapshot) => {
         
