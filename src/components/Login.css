@@ -1,0 +1,16 @@
+.LoginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.LoginContainer > h3 {
+    margin: 20px 0;
+}
+
+.LoginContainer > form {
+    width: fit-content;
+    background-color: #eeeeee;
+    padding: 10px 20px;
+}

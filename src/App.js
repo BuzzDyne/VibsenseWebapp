@@ -1,30 +1,49 @@
-import React from 'react';
+import React, {useState, useEffect}from 'react';
 import {BrowserRouter as Router} from "react-router-dom"
 
 import './App.css';
 
 import Menu from './components/Menu'
 import Header from './components/Header';
-// import Company from './Company';
-// import LayerSelection from './LayerSelection';
+import Login from './components/Login';
+
+import {auth} from './firebase'
 
 function App() {
 
-  // const [companyID, setCompanyID] = useState()
+  const [user, setUser] = useState();
 
-  // const [user, setuser] = useState();
-  // const [gList, setgList] = useState();
+  useEffect(() => {
+    const unsub = auth.onAuthStateChanged((authUser) => {
+      if(authUser) {
+        // User is logged in
+        setUser(authUser);
+      } else {
+        // User is logged out
+        setUser(null);
+      }
+      debugger
+    })
+      
 
-  return (
-    <Router>
-      <div className="app">
-        <Header/>
+    return () => {
+      // cleanup
+      unsub()
+    }
+  }, [])
 
-        <Menu companyID="rDAeKWkR5cvn9SClJr9l"/>
-
-      </div>
-    </Router>
-  );
+  if(user == null) {
+    return <Login />
+  } else {
+    return (
+      <Router>
+        <div className="app">
+          <Header/> 
+          <Menu companyID="rDAeKWkR5cvn9SClJr9l"/>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App
