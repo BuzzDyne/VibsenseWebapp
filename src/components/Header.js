@@ -1,14 +1,30 @@
 import React from 'react'
 import './Header.css'
+import {auth} from '../firebase'
+
 
 function Header() {
+
+    const logoutHandle = e => {
+        e.preventDefault();
+        auth.signOut()
+            .then((auth) => {
+                //Logged out
+            })
+            .catch((e) => alert(e.message));
+    };
+
     return (
         <nav>
-            <h2 style={{'textAlign': "center"}}>Navbar</h2>
-            {/* <h6>Welcome, UserName here</h6>
-            <button>Logout</button> */}
+            <div>
+                <h2 id="LogoName">Navbar</h2>
+            </div>
 
-            
+            <div id="navRight">
+                {/* <h6>Welcome, {props.email}</h6> */}
+                <h6>Welcome</h6>
+                <button onClick={logoutHandle}>Log out</button>
+            </div>
         </nav>
     )
 }
